@@ -30,3 +30,15 @@ body {
 .body-margin {
   @apply px-4 sm:px-8 md:px-16 lg:px-32 xl:px-64;
 }
+
+.nav-collapsed {
+  opacity: 0;
+  transform: translateX(-150%);
+  @apply transition duration-500 ease-in-out;
+}
+
+.nav-show {
+  opacity: 1;
+  transform: translateX(0%);
+  @apply transition duration-500 ease-in-out;
+}

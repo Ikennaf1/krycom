@@ -1,5 +1,4 @@
 import './globals.css';
-import { Inter } from 'next/font/google';
 import Nav from './Nav';
 import Footer from './Footer';
 
@@ -17,7 +16,7 @@ export default function RootLayout({ children }) {
 
           <Nav />
 
-          <div className="body-margin">
+          <div className="body-margin font-light pt-16">
             {children}
           </div>
 
