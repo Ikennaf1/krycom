@@ -12,8 +12,8 @@ const Nav = () => {
 
     return (
         <>
-            <nav className="fixed w-full z-30">
-                <div className="body-margin flex justify-between items-center h-16 border-b border-gray-700">
+            <nav className="fixed w-full z-30 bg-[#0a0a0a]">
+                <div className="body-margin flex justify-between items-center h-16 border-b border-gray-700/50">
                     <div className="text-lg font-bold">
                         <Link href="/"><h1>Krycom</h1></Link>
                     </div>
@@ -37,7 +37,7 @@ const Nav = () => {
             <label htmlFor="show_nav" className={`fixed w-full h-full bg-black z-40 ${showNav === false ? 'opacity-0 hidden' : 'opacity-70 transition duration-300 ease-in-out delay-500'}`}></label>
             <div className={`fixed md:hidden w-3/4 h-screen z-50 bg-[#0a0a0a] p-3 font-light ${showNav === false ? 'nav-collapsed' : 'nav-show'}`}>
                 <div className="flex flex-col gap-8">
-                    <div className="flex justify-between items-center h-16 border-b border-gray-700">
+                    <div className="flex justify-between items-center h-16 border-b border-gray-700/50">
                         <Link className="font-bold" href="/"><h2>Krycom</h2></Link>
                         <label className="cursor-pointer" htmlFor="show_nav">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
