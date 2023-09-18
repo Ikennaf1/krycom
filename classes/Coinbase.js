@@ -10,7 +10,7 @@ class Coinbase
 
     concatenateCoinSymbols(symbolOne, symbolTwo)
     {
-        return `${symbolOne}-${symbolTwo}`;
+        return `${symbolOne.toUpperCase()}-${symbolTwo.toUpperCase()}`;
     }
 
     getBuyApi(symbolOne, symbolTwo)
@@ -32,10 +32,36 @@ class Coinbase
         );
         return api;
     }
+
+    async get(symbolOne, symbolTwo)
+    {
+        let result = {
+            buy     : "",
+            sell    : ""
+        }
+
+        const buyAmount = await fetch(this.getBuyApi(symbolOne, symbolTwo))
+            .then((res) => {
+                if (res.ok) {
+                    return res.json();
+                }
+            });
+        result.buy = await buyAmount.data.amount;
+
+        const sellAmount = await fetch(this.getSellApi(symbolOne, symbolTwo))
+            .then((res) => {
+                if (res.ok) {
+                    return res.json();
+                }
+            });
+        result.sell = await sellAmount.data.amount;
+
+        return result;
+    }
 }
 
 export default Coinbase;
 
 // let coinBase = new Coinbase();
 // console.log(coinBase.concatenateCoinSymbols('USD', 'BTC'));
-// console.log(coinBase.getSellApi('USD', 'BTC'));
+// console.log(coinBase.get('USD', 'BTC'));

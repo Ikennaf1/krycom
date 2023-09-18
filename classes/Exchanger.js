@@ -1,26 +1,19 @@
+import Coinbase from "./Coinbase";
+
 class Exchanger
 {
-    constructor()
+    constructor(exchanger)
     {
-        if (this.constructor == Exchanger) {
-            throw new Error("Abstract classes can't be instantiated.");
+        switch (exchanger) {
+            case 'Coinbase':
+                return new Coinbase;
+            default:
+                return new Coinbase;
         }
-    }
-
-    concatenateCoinSymbols(symbolOne, symbolTwo)
-    {
-        throw new Error("Method join must be implemented");
-    }
-
-    getBuyApi(symbolOne, symbolTwo)
-    {
-        throw new Error("Method setBuyApi must be implemented");
-    }
-
-    getSellApi(symbolOne, symbolTwo)
-    {
-        throw new Error("Method setSellApi must be implemented");
     }
 }
 
 export default Exchanger;
+
+// let coinbase = new Exchanger('Coinbase');
+// coinbase.get('USD', 'BTC');

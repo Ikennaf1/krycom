@@ -1,9 +1,10 @@
 import Image from 'next/image';
+import CoinCompare from './CoinCompare';
 
 export default function Home() {
   return (
-    <main className="">
-      Orinocoflo
+    <main className="font-light">
+      <CoinCompare />
     </main>
   )
 }
