@@ -1,62 +1,98 @@
 "use client";
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import Exchanger from '../../classes/Exchanger';
 import Link from 'next/link';
 
 const CoinCompare = () => {
+    const [ suggests, setSuggests ] = useState(null);
+    window.localStorage.clear();
 
-    const [ bases, setBases ]           = useState(['USD', 'BTC']);
-    const [ currencies, setCurrencies ] = useState(['USD', 'BTC']);
-    const [ exchangers, setExchangers ] = useState(['Coinbase']);
+    const setLocal = (key, value) => {
+        window.localStorage.setItem(key, value);
+    }
+    const getLocal = (key) => {
+        return window.localStorage.getItem(key);
+    }
+    const appendToLocal = (key, value) => {
+        let values = [];
+        if (getLocal(key) != null) {
+            values = JSON.parse(getLocal(key));
+        }
+        values.push(value);
+        setLocal(key, JSON.stringify(values));
+    }
+    const removeLocal = (...keys) => {
+        keys.map((key) => {
+            window.localStorage.removeItem(key);
+        });        
+    }
 
     useEffect(() => {
         if (
-                window.localStorage.getItem('bases') == null
-                || window.localStorage.getItem('currencies') == null
-                || window.localStorage.getItem('exchangers') == null
+               getLocal('bases') == null
+                || getLocal('currencies') == null
+                || getLocal('exchangers') == null
             ) {
-            window.localStorage.setItem('bases', JSON.stringify(bases));
-            window.localStorage.setItem('currencies', JSON.stringify(currencies));
-            window.localStorage.setItem('exchangers', JSON.stringify(['Coinbase']));
+            setLocal('bases', JSON.stringify(['USD', 'BTC']));
+            setLocal('currencies', JSON.stringify(['USD', 'BTC']));
+            setLocal('exchangers', JSON.stringify(['Coinbase']));
+            setLocal('lowBuy', 1000000000);
+            setLocal('highSell', 0);
         }
 
-        (function() {
-             setBases(JSON.parse(window.localStorage.getItem('bases')));
-             setCurrencies(JSON.parse(window.localStorage.getItem('currencies')));
-             setExchangers(JSON.parse(window.localStorage.getItem('exchangers')));
-        })();
-
-        console.log(exchangers);
-
-        // exchangers.map((exchanger) => {
-        //     exchanger = new Exchanger(exchanger);
-        //     console.log(exchanger)
-        //     bases.map((base) => {
-        //         currencies.filter((currency) => base != currency)
-        //             .map((currency) => {
-        //                 console.log(`${base} - ${currency}`);
-        //         });
-        //     });
-        // });
+        let bases = JSON.parse(getLocal('bases'));
+        let currencies = JSON.parse(getLocal('currencies'));
+        let exchangers = JSON.parse(getLocal('exchangers'));
 
         bases.map((base) => {
             currencies.filter((currency) => base != currency)
-                .map((currency) => {
-                    exchangers.map((exchanger) => {
+                .map(async (currency) => {
+                    exchangers.map(async (exchanger) => {
                         exchanger = new Exchanger(exchanger);
-                        console.log(exchanger.get(base, currency));
-                    })
-            });
-        });
-        
+                        let prices = '';
+                        prices =  await exchanger.get(base, currency);
+                        if (parseFloat(prices.buy) < getLocal('lowBuy')) {
+                            setLocal('lowBuy', prices.buy);
+                            setLocal('lowBuyExchanger', exchanger.name);
+                        }
+                        if (parseFloat(prices.sell) > getLocal('highSell')) {
+                            setLocal('highSell', prices.sell);
+                            setLocal('highSellExchanger', exchanger.name);
+                        }
+                    });
+
+                    let baseCurrency = `${base}-${currency}`;
+                    let suggestion = {
+                        "baseCurrency": baseCurrency,
+                        "buyExchanger": getLocal('lowBuyExchanger'),
+                        "sellExchanger": getLocal('highSellExchanger'),
+                        "buy": getLocal('lowBuy'),
+                        "sell": getLocal('highSell')
+                    };
+
+                    appendToLocal('suggestions', suggestion);
+                    // setSuggests(getLocal('suggestions'));
+
+                    // console.log("low buy is ", getLocal('lowBuy'));
+                    // console.log("high sell is ", getLocal('highSell'));
+                    // console.log("Suggestions is ", getLocal('suggestions'));
+                    setLocal('lowBuy', 1000000000);
+                    setLocal('highSell', 0);
+                });
+        });        
     }, []);
 
     return (
+                // suggests &&
         <>
             <div className="font-light">
                 Coin compare
             </div>
+            {
+                // console.log("Suggestions is ", suggests)
+                // console.log("Suggestions is ", getLocal('suggestions'))
+            }
         </>
     )
 }

@@ -4,8 +4,9 @@ class Coinbase
 {
     constructor()
     {
-        this.buyApi = 'https://api.coinbase.com/v2/prices/:currency_pair/buy';
-        this.sellApi = 'https://api.coinbase.com/v2/prices/:currency_pair/sell';
+        this.name       = 'Coinbase';
+        this.buyApi     = 'https://api.coinbase.com/v2/prices/:currency_pair/buy';
+        this.sellApi    = 'https://api.coinbase.com/v2/prices/:currency_pair/sell';
     }
 
     concatenateCoinSymbols(symbolOne, symbolTwo)
@@ -36,9 +37,9 @@ class Coinbase
     async get(symbolOne, symbolTwo)
     {
         let result = {
-            buy     : "",
-            sell    : ""
-        }
+            buy     : 0,
+            sell    : 0
+        };
 
         const buyAmount = await fetch(this.getBuyApi(symbolOne, symbolTwo))
             .then((res) => {
@@ -46,7 +47,6 @@ class Coinbase
                     return res.json();
                 }
             });
-        result.buy = await buyAmount.data.amount;
 
         const sellAmount = await fetch(this.getSellApi(symbolOne, symbolTwo))
             .then((res) => {
@@ -54,6 +54,8 @@ class Coinbase
                     return res.json();
                 }
             });
+
+        result.buy = await buyAmount.data.amount;
         result.sell = await sellAmount.data.amount;
 
         return result;
