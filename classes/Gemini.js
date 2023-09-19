@@ -1,12 +1,12 @@
 // import Exchanger from './Exchanger.js';
 
-class Coinbase
+class Gemini
 {
     constructor()
     {
         this.name       = 'Coinbase';
-        this.buyApi     = 'https://api.coinbase.com/v2/prices/:currency_pair/buy';
-        this.sellApi    = 'https://api.coinbase.com/v2/prices/:currency_pair/sell';
+        this.buyApi     = 'https://api.gemini.com/v1/pubticker/:currency';
+        this.sellApi    = 'https://api.gemini.com/v1/pubticker/:currency';
     }
 
     getName()
