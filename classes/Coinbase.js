@@ -50,6 +50,9 @@ class Coinbase
             .then((res) => {
                 if (res.ok) {
                     return res.json();
+                } else {
+                    let errMsg = "Not available";
+                    return { data: {amount: errMsg } };
                 }
             });
 
@@ -57,6 +60,9 @@ class Coinbase
             .then((res) => {
                 if (res.ok) {
                     return res.json();
+                } else {
+                    let errMsg = "Not available";
+                    return { data: {amount: errMsg } };
                 }
             });
 

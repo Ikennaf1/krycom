@@ -4,9 +4,10 @@ class Gemini
 {
     constructor()
     {
-        this.name       = 'Coinbase';
-        this.buyApi     = 'https://api.gemini.com/v1/pubticker/:currency';
-        this.sellApi    = 'https://api.gemini.com/v1/pubticker/:currency';
+        this.name       = 'Gemini';
+        this.buyApi     = 'https://api.gemini.com/v1/pubticker/:currency_pair';
+        this.sellApi    = 'https://api.gemini.com/v1/pubticker/:currency_pair';
+        this.api        = 'https://api.gemini.com/v1/pubticker/:currency_pair';
     }
 
     getName()
@@ -16,7 +17,7 @@ class Gemini
 
     concatenateCoinSymbols(symbolOne, symbolTwo)
     {
-        return `${symbolOne.toUpperCase()}-${symbolTwo.toUpperCase()}`;
+        return `${symbolOne.toLowerCase()}${symbolTwo.toLowerCase()}`;
     }
 
     getBuyApi(symbolOne, symbolTwo)
@@ -39,6 +40,16 @@ class Gemini
         return api;
     }
 
+    getApi (symbolOne, symbolTwo)
+    {
+        let api = this.api;
+        api = api.replace(
+            ":currency_pair",
+            this.concatenateCoinSymbols(symbolOne, symbolTwo)
+        );
+        return api;
+    }
+
     async get(symbolOne, symbolTwo)
     {
         let result = {
@@ -46,29 +57,21 @@ class Gemini
             sell    : 0
         };
 
-        const buyAmount = await fetch(this.getBuyApi(symbolOne, symbolTwo))
+        const amounts = await fetch(this.getApi(symbolOne, symbolTwo))
             .then((res) => {
                 if (res.ok) {
                     return res.json();
+                } else {
+                    let errMsg = "Not available";
+                    return { bid: errMsg, ask: errMsg };
                 }
             });
 
-        const sellAmount = await fetch(this.getSellApi(symbolOne, symbolTwo))
-            .then((res) => {
-                if (res.ok) {
-                    return res.json();
-                }
-            });
-
-        result.buy = await buyAmount.data.amount;
-        result.sell = await sellAmount.data.amount;
+        result.buy = await amounts.bid;
+        result.sell = await amounts.ask;
 
         return result;
     }
 }
 
-export default Coinbase;
-
-// let coinBase = new Coinbase();
-// console.log(coinBase.concatenateCoinSymbols('USD', 'BTC'));
-// console.log(coinBase.get('USD', 'BTC'));
+export default Gemini;

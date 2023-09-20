@@ -1,4 +1,5 @@
 import Coinbase from "./Coinbase";
+import Gemini from "./Gemini";
 
 class Exchanger
 {
@@ -7,6 +8,8 @@ class Exchanger
         switch (exchanger) {
             case 'Coinbase':
                 return new Coinbase;
+            case 'Gemini':
+                return new Gemini;
             default:
                 return new Coinbase;
         }
