@@ -3,28 +3,23 @@ class Exchanger
     constructor(exchanger)
     {
         this.name = '';
-        this.base = 0;
-        this.padding = 0;
 
         switch (exchanger) {
             case 'Coinbase':
                 this.name = 'Coinbase';
-                this.padding = 0;
+                this.base = 0;
                 break;
             case 'Gemini':
                 this.name = 'Gemini';
                 this.base = 1 / 1000;
-                this.padding = Math.floor(Math.random() * this.base);
                 break;
             case 'Kucoin':
                 this.name = 'Kucoin';
                 this.base = 1.4 / 1000;
-                this.padding = Math.floor(Math.random() * this.base);
                 break;
             case 'AAX':
                 this.name = 'AAX';
                 this.base = 2.4 / 1000;
-                this.padding = Math.floor(Math.random() * this.base);
                 break;
             default:
                 return;
@@ -68,11 +63,11 @@ class Exchanger
         let rand = Math.floor(Math.random() * 10);
         
         if (rand % 2 == 0) {
-            result.buy -= (this.padding);
-            result.sell -= (this.padding);
+            result.buy -= (this.base);
+            result.sell -= (this.base);
         } else {
-            result.buy += (this.padding);
-            result.sell += (this.padding);
+            result.buy += (this.base);
+            result.sell += (this.base);
         }
         
         return result;
