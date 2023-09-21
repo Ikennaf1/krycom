@@ -22,9 +22,9 @@ const Home = () => {
         <div className="mt-4 h-1/2 overflow-y-auto">
           <ul id="topic_list_collapsible">
             <Link href='/documentation' className="topic-list-items-collapsible"><li>Documentation</li></Link>
-            <Link href='/about-us' className="topic-list-items-collapsible"><li>About us</li></Link>
+            {/* <Link href='/about-us' className="topic-list-items-collapsible"><li>About us</li></Link>
             <Link href='/documentation' className="topic-list-items-collapsible"><li>Blog</li></Link>
-            <Link href='/products' className="topic-list-items-collapsible"><li>Products</li></Link>
+            <Link href='/products' className="topic-list-items-collapsible"><li>Products</li></Link> */}
           </ul>
         </div>
       </NavCollapsible>
