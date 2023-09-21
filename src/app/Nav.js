@@ -17,7 +17,7 @@ const Nav = () => {
               alt="Blinds logo"
               />
             </Link>
-            <a href="/"><h1 className="font-bold text-xl">Krycom by Ikenna, Henrietta, and Chinwendu</h1></a>
+            <a href="/"><h1 className="font-bold text-xl">Krycom</h1></a>
           </div>
           <div id="blinds_id" className=""></div>
           <div className="">
