@@ -2,12 +2,12 @@ import Installation from './Installation';
 
 export const metadata = {
     metadataBase: new URL('https://raw.githubusercontent.com'),
-    title: 'Blinds | Installation',
+    title: 'Installation',
     description: 'The best dark mode package for all websites',
     keywords: ['dark', 'dark mode', 'night mode'],
   
     openGraph: {
-      title: 'Blinds | Installation',
+      title: 'Installation',
       description: 'The best dark mode package for all websites',
       url: 'https://blindsjs.dev',
       images: [

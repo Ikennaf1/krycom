@@ -38,7 +38,7 @@ const Documentation = () => {
                alt="Blinds logo"
               />
             </Link>
-            <a href="/"><h1 className="font-bold text-xl">Blinds</h1></a>
+            <a href="/"><h1 className="font-bold text-xl">Krycom</h1></a>
           </div>
           <div id="blinds_id" className=""></div>
           <div className="">

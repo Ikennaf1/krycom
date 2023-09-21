@@ -2,12 +2,12 @@ import CustomIcons from './CustomIcons';
 
 export const metadata = {
     metadataBase: new URL('https://raw.githubusercontent.com'),
-    title: 'Blinds | Custom Icons',
+    title: 'Custom Icons',
     description: 'The best dark mode package for all websites',
     keywords: ['dark', 'dark mode', 'night mode'],
   
     openGraph: {
-      title: 'Blinds | Custom Icons',
+      title: 'Custom Icons',
       description: 'The best dark mode package for all websites',
       url: 'https://blindsjs.dev',
       images: [

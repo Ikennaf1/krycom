@@ -11,7 +11,7 @@ import Testimonials from './Testimonials';
 import Nav from './Nav';
 
 export const metadata = {
-  title: 'Blinds | Home',
+  title: 'Home',
   description: 'The best dark mode package for all websites',
 }
 

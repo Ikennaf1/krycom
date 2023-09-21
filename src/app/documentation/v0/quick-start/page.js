@@ -2,12 +2,12 @@ import QuickStart from './QuickStart';
 
 export const metadata = {
     metadataBase: new URL('https://raw.githubusercontent.com'),
-    title: 'Blinds | Quick Start',
+    title: 'Quick Start',
     description: 'The best dark mode package for all websites',
     keywords: ['dark', 'dark mode', 'night mode'],
   
     openGraph: {
-      title: 'Blinds | Quick Start',
+      title: 'Quick Start',
       description: 'The best dark mode package for all websites',
       url: 'https://blindsjs.dev',
       images: [
