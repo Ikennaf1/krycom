@@ -31,7 +31,7 @@ const CoinCompare = () => {
     }
 
     useEffect(() => {
-        window.localStorage.clear();
+        // window.localStorage.clear();
         if (
                getLocal('bases') == null
                 || getLocal('currencies') == null
