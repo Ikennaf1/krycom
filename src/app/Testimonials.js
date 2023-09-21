@@ -36,11 +36,11 @@ const Testimonials = () => {
                 <div className="flex flex-row justify-center">
                     <div className="ceo-quote">
                         <i></i>
-                        Blindsjs represents a unique way of interaction between businesses and technology.
+                        Krycom represents a unique way of interaction between businesses and technology.
                         We bridge the gap between great technology, professionalism, and affordability.
                         We occupy a strategic position where we best serve both businesses and world class developers,
                         delivering enterprise-grade solutions for the price and flexibility of freelance.
-                        <p className="mt-2 text-center text-sm">- Ikenna Isiogu</p>
+                        {/* <p className="mt-2 text-center text-sm">- Ikenna Isiogu</p> */}
                     </div>
                 </div>
 
