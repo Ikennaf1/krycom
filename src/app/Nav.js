@@ -23,9 +23,9 @@ const Nav = () => {
           <div className="">
             <ul className="hidden md:flex gap-4">
               <Link href="/documentation" className="nav-link"><li>Documentation</li></Link>
-              <Link href="/about-us" className="nav-link"><li>About us</li></Link>
+              {/* <Link href="/about-us" className="nav-link"><li>About us</li></Link>
               <Link href="/" className="nav-link"><li>Blog</li></Link>
-              <Link href="/products" className="nav-link"><li>Products</li></Link>
+              <Link href="/products" className="nav-link"><li>Products</li></Link> */}
             </ul>
             <label htmlFor="collapsedNav" className="md:hidden">
               <Image
