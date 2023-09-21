@@ -1,4 +1,4 @@
-import Image from 'next/image';
+"use client";
 import CoinCompare from './CoinCompare';
 
 export default function Home() {
