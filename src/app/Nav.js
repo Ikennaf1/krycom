@@ -119,15 +119,14 @@ const Nav = () => {
             addToCurrencies(currency);
         }
         setCurrencies((currencies) => {
-            let updatedcurrencies = [];
+            let updatedCurrencies = [];
             currencies.map((eachCurrency) => {
                 if (eachCurrency.symbol == currency) {
                     eachCurrency.active = !eachCurrency.active;
-                    console.log(eachCurrency.symbol);
                 }
-                updatedcurrencies.push(eachCurrency);
+                updatedCurrencies.push(eachCurrency);
             });
-            return updatedcurrencies;
+            return updatedCurrencies;
         })
     }
 
@@ -137,6 +136,63 @@ const Nav = () => {
 
     const handleShowCoins = () => {
         setShowCoins((showCoins) => !showCoins);
+    }
+
+    const hasExchanger = (exchanger) => {
+        let exchangers = JSON.parse(window.localStorage.getItem('exchangers'));
+        if (exchangers != null) {
+            return exchangers.includes(exchanger);
+        }
+
+        return false;
+    }
+
+    const addToExchangers = (exchanger) => {
+        let exchangers = [];
+        if (window.localStorage.getItem('exchangers') != null) {
+            exchangers = JSON.parse(window.localStorage.getItem('exchangers'));
+        }
+        exchangers.push(exchanger);
+        window.localStorage.setItem('exchangers', JSON.stringify(exchangers));
+    }
+
+    const removeExchanger = (exchanger) => {
+        let exchangers = [];
+        if (window.localStorage.getItem('exchangers') != null) {
+            exchangers = JSON.parse(window.localStorage.getItem('exchangers'));
+        }
+        if (hasExchanger(exchanger)) {
+            exchangers = exchangers.filter((eachExchanger) => eachExchanger != exchanger);
+            window.localStorage.setItem('exchangers', JSON.stringify(exchangers));
+        }
+    }
+    
+    const [ exchangers, setExchangers ] = useState([
+        {name:"AAX", active:hasExchanger('AAX')},
+        {name:"Ascendex", active:hasExchanger('Ascendex')},
+        {name:"Bigone", active:hasExchanger('Bigone')},
+        {name:"Biquant", active:hasExchanger('Biquant')},
+        {name:"Coinbase", active:hasExchanger('Coinbase')},
+        {name:"Gemini", active:hasExchanger('Gemini')},
+        {name:"Kucoin", active:hasExchanger('Kucoin')},
+    ]);
+
+    const toggleExchanger = (exchanger) => {
+        if (hasExchanger(exchanger)) {
+            removeExchanger(exchanger);
+        } else {
+            addToExchangers(exchanger);
+        }
+        setExchangers((exchangers) => {
+            let updatedExchangers = [];
+            exchangers.map((eachExchanger) => {
+                if (eachExchanger.name == exchanger) {
+                    eachExchanger.active = !eachExchanger.active;
+                }
+                updatedExchangers.push(eachExchanger);
+            });
+            return updatedExchangers;
+        })
     }
 
     const handleShowExchangers = () => {
@@ -194,7 +250,12 @@ const Nav = () => {
 
             <label htmlFor="show_coins" className={`fixed w-full h-full bg-black z-40 ${showCoins === false ? 'opacity-0 hidden' : 'opacity-70 transition duration-300 ease-in-out delay-500'}`}></label>
             <div className={`fixed w-[360px] md:w-[480px] left-[50%] transform translate-x-[-50%] bg-gray-900 h-[75vh] top-[50%] transform translate-y-[-50%] z-50 overflow-y-auto p-3 font-light ${showCoins === false ? 'opacity-0 hidden' : 'opacity-100 transition duration-300 ease-in-out delay-500'}`}>
-                <div className="flex gap-8 justify-between px-4">
+                <label htmlFor="show_coins" className="cursor-pointer absolute top-4 right-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </label>
+                <div className="flex gap-8 justify-between px-4 my-8">
                     {/* Bases */}
                     <div className="">
                         <div className="flex justify-between items-center h-8 font-bold border-b border-gray-700/50">
@@ -235,6 +296,44 @@ const Nav = () => {
                                             <div className="flex gap-8 justify-between items-center">
                                                 <p>{`${currency.name} (${currency.symbol})`}</p>
                                                 <input type="checkbox" checked={ currency.active } onChange={()=>toggleCurrency(currency.symbol)} />
+                                            </div>                                
+                                        </label>
+                                    </li>
+                                ))
+                                }
+                                </ul>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Show Exchangers */}
+
+            <button id="show_exchangers" className="hidden" type="button" onClick={ () => handleShowExchangers() }></button>
+
+            <label htmlFor="show_exchangers" className={`fixed w-full h-full bg-black z-40 ${showExchangers === false ? 'opacity-0 hidden' : 'opacity-70 transition duration-300 ease-in-out delay-500'}`}></label>
+            <div className={`fixed w-[360px] md:w-[480px] left-[50%] transform translate-x-[-50%] bg-gray-900 h-[75vh] top-[50%] transform translate-y-[-50%] z-50 overflow-y-auto p-3 font-light ${showExchangers === false ? 'opacity-0 hidden' : 'opacity-100 transition duration-300 ease-in-out delay-500'}`}>
+                <label htmlFor="show_exchangers" className="cursor-pointer absolute top-4 right-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </label>
+                <div className="px-4 my-8">
+                    <div className="">
+                        <div className="flex justify-between items-center h-8 font-bold border-b border-gray-700/50">
+                            Select exchangers
+                        </div>
+                        <div className="flex flex-col gap-4 text-sm">
+                            <form>
+                                <ul>
+                                {
+                                exchangers.map((exchangers, id) => (
+                                    <li className="py-2 border-b border-gray-700/50 text-gray-400" key={id}>
+                                        <label>
+                                            <div className="flex gap-8 justify-between items-center">
+                                                <p>{`${exchangers.name}`}</p>
+                                                <input type="checkbox" checked={ exchangers.active } onChange={()=>toggleExchanger(exchangers.name)} />
                                             </div>                                
                                         </label>
                                     </li>

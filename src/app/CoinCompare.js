@@ -88,7 +88,7 @@ const CoinCompare = () => {
             <div className="font-light">
                 <div className="overflow-x-auto">
                     {
-                        suggestions.filter((suggestion) => suggestion.buyExchanger != suggestion.sellExchanger)
+                        suggestions.filter((suggestion) => ((suggestion.buyExchanger != suggestion.sellExchanger) && (suggestion.lowBuy > 0)))
                         .map((suggestion, id) => (
                             <div className="flex flex-col my-8" key={id}>
                                 <div className="text-center bg-gray-900 text-gray-400">

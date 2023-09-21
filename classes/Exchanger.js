@@ -21,6 +21,18 @@ class Exchanger
                 this.name = 'AAX';
                 this.base = 2.4 / 1000;
                 break;
+            case 'Ascendex':
+                this.name = 'Ascendex';
+                this.base = 1.34 / 1000;
+                break;
+            case 'Bigone':
+                this.name = 'Bigone';
+                this.base = 1.84 / 1000;
+                break;
+            case 'Biquant':
+                this.name = 'Biquant';
+                this.base = 1.32 / 1000;
+                break;
             default:
                 return;
         }
