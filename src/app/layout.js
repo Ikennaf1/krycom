@@ -5,13 +5,13 @@ import GTag from './GTag';
 
 export const metadata = {
   metadataBase: new URL('https://raw.githubusercontent.com'),
-  title: 'Blinds',
-  description: 'The best dark mode package for all websites',
+  title: 'Krycom',
+  description: 'The best website for plugins',
   keywords: ['dark', 'dark mode', 'night mode'],
 
   openGraph: {
-    title: 'Blinds',
-    description: 'The best dark mode package for all websites',
+    title: 'Krycom',
+    description: 'The best website for plugins',
     url: 'https://blindsjs.dev',
     images: [
       {
