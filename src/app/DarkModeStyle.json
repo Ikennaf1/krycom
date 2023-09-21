@@ -1,0 +1,96 @@
+{
+    "body": {
+      "background-color": "hsl(228, 20%, 12%)",
+      "color": "hsl(228, 0%, 70%)"
+    },
+    ".footer": {
+        "background-color": "hsl(228, 20%, 10%)",
+        "color": "hsl(228, 0%, 70%)",
+        "border-color": "hsl(228, 0%, 15%)"
+    },
+    ".header": {
+        "background": "linear-gradient(to bottom right, hsla(0, 100%, 50%, 0.2), transparent, transparent, hsla(240, 100%, 47%, 0.07))",
+        "background-color": "hsl(228, 20%, 6%)"
+    },
+    ".cta h2": {
+        "color": "hsl(228, 0%, 96%)"
+    },
+    ".cta p": {
+        "color": "hsl(228, 0%, 70%)"
+    },
+    ".cta img": {
+        "filter": "invert(50%)"
+    },
+    ".section-one-items": {
+        "background-color": "hsl(228, 20%, 10%)",
+        "color": "hsl(228, 0%, 70%)",
+        "border-color": "hsl(228, 0%, 15%)"
+    },
+    ".section-three-items": {
+        "background-color": "hsl(228, 20%, 10%)",
+        "color": "hsl(228, 0%, 70%)",
+        "border-color": "hsl(228, 0%, 15%)"
+    },
+    ".article": {
+        "background-color": "hsl(228, 20%, 10%)",
+        "color": "hsl(228, 0%, 70%)"
+    },
+    ".article h2": {
+        "color": "hsl(228, 0%, 70%)"
+    },
+    ".link-btn": {
+        "background-color": "hsl(228, 20%, 12%)",
+        "color": "hsl(228, 0%, 70%)",
+        "border-color": "hsl(228, 0%, 15%)"
+    },
+    ".more-than": {
+        "color": "white"
+    },
+    ".more-than-btn-link": {
+        "color": "white"
+    },
+    ".about-jumbo": {
+        "background": "linear-gradient(to bottom right, hsla(0, 100%, 50%, 0.2), transparent, transparent, hsla(240, 100%, 47%, 0.07))",
+        "background-color": "hsl(228, 20%, 6%)"
+    },
+    ".doc-page-header": {
+        "border-color": "hsl(228, 0%, 12%)"
+    },
+    ".doc-page-header-inner": {
+        "background-color": "hsl(228, 20%, 10%)",
+        "border-color": "hsl(228, 0%, 12%)"
+    },
+    ".doc-header-list": {
+        "border-color":"hsl(228, 0%, 15%)"
+    },
+    ".doc-header-list:hover": {
+        "background-color": "hsl(228, 20%, 12%)"
+    },
+    ".doc-header-list a": {
+        "color": "white",
+        "border-color": "white"
+    },
+    ".doc-header-list a:hover": {
+        "color": "#2ec4b6",
+        "border-color": "#2ec4b6"
+    },
+    ".integrate-frameworks-icons": {
+        "background-color": "hsla(300, 100%, 50%, 0.2)"
+    },
+    ".dev-expe": {
+        "background-color":"hsl(228, 20%, 15%)"
+    },
+    ".dev-products-card,.card-feature": {
+        "background-color":"hsl(228, 20%, 8%)"
+    },
+    ".dev-products-card-container,.card-feature": {
+        "border-color": "hsl(228, 0%, 12%)"
+    },
+    ".ceo-quote": {
+        "color":"white"
+    },
+    ".all-products-header": {
+        "background": "linear-gradient(to bottom right, rgba(228, 7, 44, 0.5), transparent, transparent, rgba(137, 10, 255, 0.18))",
+        "backgound-color": "hsl(228, 20%, 6%)"
+      }
+}
