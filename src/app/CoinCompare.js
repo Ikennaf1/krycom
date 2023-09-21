@@ -9,6 +9,7 @@ const CoinCompare = () => {
     const [ highSell, setHighSell ] = useState(0);
     const [ lowBuyExchanger, setLowBuyExchanger ] = useState('');
     const [ highSellExchanger, setHighSellExchanger ] = useState('');
+    const [ named, setNamed ] = useState('welcome');
 
     const setLocal = (key, value) => {
         window.localStorage.setItem(key, value);
@@ -80,7 +81,7 @@ const CoinCompare = () => {
                     appendToLocal('suggestions', suggestion);
                 });
         });
-    }, []);
+    }, [named]);
 
     return (
                 suggestions &&
