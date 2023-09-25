@@ -6,5 +6,3 @@ class Coinbase extends Exchanger
         this.padding = 0;
     }
 }
-
-export default Coinbase;

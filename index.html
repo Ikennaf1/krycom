@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="./assets/css/style.css" />
+        <meta name="description" content="Compare crypto coins from various exchanges and make informed trade decisions" />
+        <meta property="og:description" content="Compare crypto coins from various exchanges and make informed trade decisions" />
+        <!-- <script src="./assets/js/script.min.js" type="module" defer></script> -->
+        <title>Krycom | Crypto compare</title>
+    </head>
+    <body class="">
+
+        <div class="">
+
+            <!-- Navigation bar -->
+            <div>
+                <nav class="fixed w-full z-20 bg-[#0a0a0a]">
+                    <div class="body-margin flex justify-between items-center h-16 border-b border-gray-700/50">
+                        <div class="text-lg font-bold">
+                            <a href="/"><h1>Krycom</h1></a>
+                        </div>
+
+                        <div>
+                            <ul class="flex gap-4 items-center">
+                                <label for="show_coins"  class="hidden cursor-pointer md:block"><li>Coins</li></label>
+                                <label for="show_exchangers"  class="hidden cursor-pointer md:block"><li>Exchangers</li></label>
+                                <a class="hidden md:block" href="/"><li>Reload</li></a>
+                                <label class="block md:hidden cursor-pointer" for="show_nav">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" view-box="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75" />
+                                    </svg>
+                                </label>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- Show nav -->
+                <button id="show_nav" class="hidden" type="button" onclick="handleNav()"></button>
+
+                <label id="label_nav_collapsed" for="show_nav" class="fixed w-full h-full bg-black z-30 opacity-70 transition duration-300 ease-in-out delay-500"></label>
+                <div id="nav_collapsed" class="fixed md:hidden w-3/4 h-screen z-40 bg-[#0a0a0a] p-3 font-light">
+                    <div class="flex flex-col gap-8">
+                        <div class="flex justify-between items-center h-16 border-b border-gray-700/50">
+                            <a class="font-bold" href="/"><h2>Krycom</h2></a>
+                            <label class="cursor-pointer" for="show_nav">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" view-box="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </label>
+                        </div>
+
+                        <ul class="flex flex-col gap-4 items-start">
+                            <label for="show_coins" class="block cursor-pointer md:hidden"><li>Coins</li></label>
+                            <label for="show_exchangers" class="block cursor-pointer md:hidden"><li>Exchangers</li></label>
+                            <a class="block md:hidden" href="/"><li>Reload</li></a>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Show Coins -->
+                <button id="show_coins" class="hidden" type="button" onclick="handleShowCoins()"></button>
+
+                <label id="label_show_coins_currencies" for="show_coins" class="fixed w-full h-full bg-black z-40 opacity-70 transition duration-300 ease-in-out delay-500"></label>
+                <div id="show_coins_currencies" class="fixed w-[360px] md:w-[480px] left-[50%] transform translate-x-[-50%] bg-gray-900 h-[75vh] top-[50%] transform translate-y-[-50%] z-50 overflow-y-auto p-3 font-light transition duration-300 ease-in-out delay-500">
+                    <label for="show_coins" class="cursor-pointer absolute top-4 right-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" view-box="0 0 24 24" stroke-width={1.5} stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </label>
+                    <div class="flex gap-8 justify-between px-4 my-8">
+                        <!-- Bases -->
+                        <div class="">
+                            <div class="flex justify-between items-center h-8 font-bold border-b border-gray-700/50">
+                                Select bases
+                            </div>
+                            <div class="flex flex-col gap-4 text-sm">
+                                <form>
+                                    <ul id="bases_id">
+                                    
+                                    </ul>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- Currencies -->
+                        <div class="">
+                            <div class="flex justify-between items-center h-8 font-bold border-b border-gray-700/50">
+                                Select currencies
+                            </div>
+                            <div class="flex flex-col gap-4 text-sm">
+                                <form>
+                                    <ul id="currencies_id">
+                                    
+                                    </ul>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Show Exchangers -->
+
+                <button id="show_exchangers" class="hidden" type="button" onclick="handleShowExchangers()"></button>
+
+                <label id="label_show_exchangers_wrap" for="show_exchangers" class="fixed w-full h-full bg-black z-40 transition duration-300 ease-in-out delay-500"></label>
+                <div id="show_exchangers_wrap" class="fixed w-[360px] md:w-[480px] left-[50%] transform translate-x-[-50%] bg-gray-900 h-[75vh] top-[50%] transform translate-y-[-50%] z-50 overflow-y-auto p-3 font-light transition duration-300 ease-in-out delay-500">
+                    <label for="show_exchangers" class="cursor-pointer absolute top-4 right-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" class="w-6 h-6">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </label>
+                    <div class="px-4 my-8">
+                        <div class="">
+                            <div class="flex justify-between items-center h-8 font-bold border-b border-gray-700/50">
+                                Select exchangers
+                            </div>
+                            <div class="flex flex-col gap-4 text-sm">
+                                <form>
+                                    <ul id="exchangers_id">
+                                    
+                                    </ul>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Body Content -->
+            <div class="body-margin font-light pt-16">
+                <main class="font-light">
+                    <div>
+                        <div class="font-light">
+                            <div class="overflow-x-auto" id="suggestions_id">
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+
+            <!-- Footer Content -->
+            <footer>
+                <div class="body-margin text-sm text-center text-gray-500">
+                    Krycom: An ALx project by Ikenna Isiogu, Henrietta Onyeabor, Chinwendu Evans
+                </div>
+            </footer>
+
+        </div>
+
+        <script src="./assets/js/script.min.js" type="text/javascript"></script>
+
+        <script type="module">
+            setTimeout(() => {
+                console.log('Wait...');
+                suggestions.filter((suggestion) => ((suggestion.buyExchanger != suggestion.sellExchanger) && (suggestion.lowBuy > 0)))
+                .map((suggestion, id) => {
+                    document.querySelector('#suggestions_id').innerHTML += `<div class="flex flex-col my-12" id="suggestion${id}">
+                        <div class="text-center bg-gray-900 text-gray-400">
+                            ${suggestion.baseCurrency}
+                        </div>
+                        <hr class="border border-[#0a0b0c]" />
+                        <div class="w-full">
+                            <div class="flex">
+                                <table class="w-full border border-gray-900 border-collapse bg-[bg-gray-900] text-left text-sm text-gray-400">
+                                    <thead class="bg-[#0a0a0a]">
+                                        <tr>
+                                            <th scope="col" class="px-6 py-4 font-bold text-gray-400">Buy from</th>
+                                            <th scope="col" class="px-6 py-4 font-bold text-gray-400">Buy</th>
+                                            <th scope="col" class="px-6 py-4 font-bold text-gray-400">Sell at</th>
+                                            <th scope="col" class="px-6 py-4 font-bold text-gray-400">Sell</th>
+                                            <th scope="col" class="px-6 py-4 font-bold text-gray-400">Profit</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-gray-100 border-t border-gray-900">
+                                        <tr class="odd:bg-black even:bg-[#0a0a0a]">
+                                            <td class="px-6 py-4">${suggestion.buyExchanger}</td>
+                                            <td class="px-6 py-4">${suggestion.lowBuy}</td>
+                                            <td class="px-6 py-4">${suggestion.sellExchanger}</td>
+                                            <td class="px-6 py-4">${suggestion.highSell}</td>
+                                            <td class="px-6 py-4">${suggestion.highSell - suggestion.lowBuy}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>`
+                })}, 1500)
+        </script>
+    </body>
+</html>

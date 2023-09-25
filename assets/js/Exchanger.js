@@ -85,5 +85,3 @@ class Exchanger
         return result;
     }
 }
-
-export default Exchanger;
